@@ -49,6 +49,9 @@
 
 			Claims.AddRange(Roles);
 
+			string a = Configuration["JwtTokenOptions:Issuer"]!;
+			string b = Configuration["JwtTokenOptions:Audience"]!;
+
 			JwtSecurityToken token = new JwtSecurityToken(
 				issuer: Configuration["JwtTokenOptions:Issuer"],
 				audience: Configuration["JwtTokenOptions:Audience"],

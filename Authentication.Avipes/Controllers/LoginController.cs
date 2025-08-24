@@ -5,16 +5,12 @@
 	using Microsoft.AspNetCore.Mvc;
 	using Microsoft.IdentityModel.Tokens;
 	using System.IdentityModel.Tokens.Jwt;
-	using System.Security.Cryptography;
 	
 	[ApiController]
 	public class LoginController : ControllerBase
 	{
-		readonly IConfiguration Config;
-		public LoginController(IConfiguration config)
-		{
-			Config = config;
-		}
+		readonly IConfiguration Configuration;
+		public LoginController(IConfiguration configuration) { Configuration = configuration; }
 
 		[HttpPost]
 		[Route("api/authentication")]
@@ -23,7 +19,6 @@
 		{
 			List<Claim> Claims = new List<Claim>()
 			{
-				new Claim(ClaimTypes.NameIdentifier, "5464565465465466"),
 				new Claim("id", "3643566786744536"),
 				new Claim("email", "ilyasbural@gmail.com")
 				//new Claim(ClaimTypes.NameIdentifier, "5464565465465466"),
@@ -36,11 +31,13 @@
 				//	new Claim("RefreshToken", Response.Authentication.RefreshToken),
 				//	new Claim("RefreshTokenExpireDate", Response.Authentication.RefreshTokenExpireDate.ToString())
 			};
+
 			//List<Claim> Roles = new List<Claim>()
 			//{
 			//	new Claim("role", "readers"),
 			//	new Claim("role", "writers"),
 			//};
+
 			//Claims.AddRange(Roles);
 
 			//var handler = new JsonWebTokenHandler();
@@ -58,12 +55,12 @@
 			//});
 
 			JwtSecurityToken token = new JwtSecurityToken(
-				issuer: Config["JwtTokenOptions:Issuer"],
-				audience: Config["JwtTokenOptions:Audience"],
+				issuer: Configuration["JwtTokenOptions:Issuer"],
+				audience: Configuration["JwtTokenOptions:Audience"],
 				claims: Claims,
 				notBefore: DateTime.Now,
 				expires: DateTime.Now.AddMinutes(30),
-				signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ThisIsASecretKeydfgdfgdfgdgdfgfdgfdgdfgdfgdfgfdrleojeırjeırjfıeorjeıjerdfgdflıgdflıgdlfıgdl")), SecurityAlgorithms.HmacSha256)
+				signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtTokenOptions:SecurityKey"]!)), SecurityAlgorithms.HmacSha256)
 			);
 			string value = new JwtSecurityTokenHandler().WriteToken(token);
 
@@ -109,14 +106,6 @@
 		{
 			JwtSecurityTokenHandler securityHandler = new JwtSecurityTokenHandler();
 			JwtSecurityToken securityToken = securityHandler.ReadJwtToken(Model.JsonToken);
-
-
-
-
-
-
-
-
 
 			//List<Claim> Claims = new List<Claim>()
 			//{
