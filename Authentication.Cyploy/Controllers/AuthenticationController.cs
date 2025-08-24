@@ -7,15 +7,15 @@
 	public class AuthenticationController : ControllerBase
 	{
 		readonly IConfiguration Configuration;
-		public AuthenticationController()
+		public AuthenticationController(IConfiguration configuration)
 		{
+			Configuration = configuration;
 
 
 
 
 
 
-			
 		}
 	}
 }

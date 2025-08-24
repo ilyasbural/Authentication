@@ -6,9 +6,10 @@
 	[ApiController]
 	public class AuthenticationController : ControllerBase
 	{
-		public AuthenticationController()
+		readonly IConfiguration Configuration;
+		public AuthenticationController(IConfiguration configuration)
 		{
-			
+			Configuration = configuration;
 
 
 
