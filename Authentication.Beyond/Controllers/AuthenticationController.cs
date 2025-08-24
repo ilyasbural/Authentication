@@ -1,10 +1,10 @@
-﻿namespace Authentication.Avonyu.Controllers
+﻿namespace Authentication.Beyond.Controllers
 {
-	using System.Text;
-	using System.Security.Claims;
-	using System.IdentityModel.Tokens.Jwt;
 	using Microsoft.AspNetCore.Mvc;
 	using Microsoft.IdentityModel.Tokens;
+	using System.IdentityModel.Tokens.Jwt;
+	using System.Security.Claims;
+	using System.Text;
 
 	[ApiController]
 	public class AuthenticationController : ControllerBase
@@ -14,8 +14,8 @@
 
 		[HttpPost]
 		[Route("api/authentication")]
-		[Produces(typeof(AuthResponse))]
-		public AuthResponse Authentication([FromBody] BodyParameterAuthentication Model)
+		[Produces(typeof(AuthenticationResponse))]
+		public AuthenticationResponse Authentication([FromBody] BodyParameterAuthentication Model)
 		{
 			List<Claim> Claims = new List<Claim>()
 			{
@@ -40,26 +40,14 @@
 				//new Claim("RefreshToken", ""),
 				//new Claim("RefreshTokenExpireDate", "")
 			};
+
 			List<Claim> Roles = new List<Claim>()
 			{
 				new Claim("Role", "Reader"),
 				new Claim("Role", "Writer"),
 			};
-			Claims.AddRange(Roles);
 
-			//var handler = new JsonWebTokenHandler();
-			//var now = DateTime.UtcNow;
-			//var tokenData = handler.CreateToken(new SecurityTokenDescriptor
-			//{
-			//	Issuer = "AspNetJWT"
-			//	//Issuer = Config["JwtTokenOptions:Issuer"],
-			//	//Audience = Config["JwtTokenOptions:Audience"],
-			//	//IssuedAt = now,
-			//	//NotBefore = now,
-			//	//Subject = new ClaimsIdentity(Claims),
-			//	//Expires = now.AddMinutes(double.Parse(Config["JwtTokenOptions:Expiration"])),
-			//	//SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ThisIsASecretKeydfgdfgdfgdgdfgfdgfdgdfgdfgdfgfd")), SecurityAlgorithms.HmacSha256)
-			//});
+			Claims.AddRange(Roles);
 
 			JwtSecurityToken token = new JwtSecurityToken(
 				issuer: Configuration["JwtTokenOptions:Issuer"],
@@ -71,14 +59,7 @@
 			);
 			string value = new JwtSecurityTokenHandler().WriteToken(token);
 
-			//var keyBytes = Encoding.UTF8.GetBytes(_config.GetSection("JwtTokenOptions")["SigningKey"]);
-			//var symmetricKey = new SymmetricSecurityKey(keyBytes);
-
-			//var signingCredentials = new SigningCredentials(
-			//	symmetricKey,
-			//	SecurityAlgorithms.HmacSha256);
-
-			return new AuthResponse
+			return new AuthenticationResponse
 			{
 				AccessToken = value,
 				AccessTokenExpireDate = token.ValidTo,
