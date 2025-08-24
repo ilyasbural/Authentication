@@ -1,4 +1,4 @@
-﻿namespace Authentication.Bizlyn.Controllers
+﻿namespace Authentication.Luneita.Controllers
 {
 	using Microsoft.AspNetCore.Mvc;
 

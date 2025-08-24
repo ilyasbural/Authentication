@@ -6,5 +6,7 @@
 	[ApiController]
 	public class CreateAuthenticationController : ControllerBase
 	{
+		readonly IConfiguration Configuration;
+		public CreateAuthenticationController(IConfiguration configuration) { Configuration = configuration; }
 	}
 }
