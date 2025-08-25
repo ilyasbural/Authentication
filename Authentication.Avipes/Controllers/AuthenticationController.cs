@@ -1,10 +1,7 @@
 ﻿namespace Authentication.Avipes.Controllers
 {
 	using Microsoft.AspNetCore.Mvc;
-	using Microsoft.IdentityModel.Tokens;
 	using System.IdentityModel.Tokens.Jwt;
-	using System.Security.Claims;
-	using System.Text;
 
 	[ApiController]
 	public class AuthenticationController : ControllerBase
@@ -19,6 +16,16 @@
 		{
 			JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
 			JwtSecurityToken securityToken = handler.ReadJwtToken(Model.JsonToken);
+
+			UserModel User = new UserModel
+			{
+				Id = long.Parse(securityToken.Claims.ElementAt(0).Value), 
+				Email = securityToken.Claims.ElementAt(1).Value,
+				Name = securityToken.Claims.ElementAt(2).Value,
+				Lastname = securityToken.Claims.ElementAt(3).Value,
+				Birthdate = DateTime.Parse(securityToken.Claims.ElementAt(4).Value)
+			};
+
 			return new AuthenticationResponse
 			{
 				AccessToken = securityToken.RawData,

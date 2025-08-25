@@ -1,10 +1,7 @@
 ﻿namespace Authentication.Avonyu.Controllers
 {
-	using System.Text;
-	using System.Security.Claims;
-	using System.IdentityModel.Tokens.Jwt;
 	using Microsoft.AspNetCore.Mvc;
-	using Microsoft.IdentityModel.Tokens;
+	using System.IdentityModel.Tokens.Jwt;
 
 	[ApiController]
 	public class AuthenticationController : ControllerBase

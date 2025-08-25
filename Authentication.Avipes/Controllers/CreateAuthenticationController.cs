@@ -19,26 +19,26 @@
 		{
 			List<Claim> Claims = new List<Claim>()
 			{
-				//new Claim("Id", "4563475674584678"),
-				//new Claim("Email", "ilyasbural@gmail.com"),
-				//new Claim("", ""),
-				//new Claim("", ""),
-				//new Claim("", ""),
-				//new Claim("", ""),
-				//new Claim("", ""),
-				//new Claim("", ""),
-				//new Claim("", ""),
-				//new Claim("", ""),
-				//new Claim("", ""),
-				//new Claim("", ""),
-				//new Claim("", ""),
-				//new Claim("", ""),
-				//new Claim("", ""),
-				//new Claim("", ""),
-				//new Claim("Authentication", ""),
-				//new Claim("AccessTokenExpireDate", ""),
-				//new Claim("RefreshToken", ""),
-				//new Claim("RefreshTokenExpireDate", "")
+				new Claim("Id", "4563475674584678"),
+				new Claim("Email", "ilyasbural@gmail.com"),
+				new Claim("Name", "fghfg"),
+				new Claim("Lastname", "rtytry"),
+				new Claim("Birthdate", "54646"),
+				new Claim("Gender", "dfgdf"),
+				new Claim("Address", "rgfdgsdfg"),
+				new Claim("Phone", "sddfgdg"),
+				new Claim("Country", "dfgdsf"),
+				new Claim("State", "fghfgh"),
+				new Claim("City", "ertert"),
+				new Claim("Access", "gfhdfhgf"),
+				new Claim("PostalCode", "456456"),
+				new Claim("RegisterDate", "6858"),
+				new Claim("UpdateDate", "567567"),
+				new Claim("Authentication", "fdgdfgf"),
+				new Claim("AccessToken", ""),
+				new Claim("AccessTokenExpireDate", "retert"),
+				new Claim("RefreshToken", "dfgdfg"),
+				new Claim("RefreshTokenExpireDate", "ertert")
 			};
 
 			List<Claim> Roles = new List<Claim>()
