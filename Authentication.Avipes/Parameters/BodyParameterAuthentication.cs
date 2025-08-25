@@ -1,4 +1,4 @@
-﻿namespace Authentication.Cyploy
+﻿namespace Authentication.Avipes
 {
 	public class BodyParameterAuthentication
 	{

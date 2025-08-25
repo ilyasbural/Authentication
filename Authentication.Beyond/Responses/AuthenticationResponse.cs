@@ -1,7 +1,6 @@
 ﻿namespace Authentication.Beyond
 {
-	public class AuthenticationResponse : Response<AuthenticationResponse>
+	public class AuthenticationResponse : ResponseBase<AuthenticationResponse>
 	{
-
 	}
 }

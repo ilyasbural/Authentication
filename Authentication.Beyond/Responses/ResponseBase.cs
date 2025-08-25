@@ -1,6 +1,6 @@
 ﻿namespace Authentication.Beyond
 {
-	public abstract class Response<T>
+	public abstract class ResponseBase<T>
 	{
 		public String AccessToken { get; set; } = String.Empty;
 		public DateTime AccessTokenExpireDate { get; set; }
