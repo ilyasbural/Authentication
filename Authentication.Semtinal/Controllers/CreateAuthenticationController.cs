@@ -57,11 +57,10 @@
 				expires: DateTime.Now.AddMinutes(30),
 				signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ThisIsASecretKeydfgdfgdfgdgdfgfdgfdgdfgdfgdfgfdrleojeırjeırjfıeorjeıjerdfgdflıgdflıgdlfıgdl")), SecurityAlgorithms.HmacSha256)
 			);
-			string value = new JwtSecurityTokenHandler().WriteToken(token);
 
 			return new CreateResponse
 			{
-				AccessToken = value,
+				AccessToken = new JwtSecurityTokenHandler().WriteToken(token),
 				AccessTokenExpireDate = token.ValidTo,
 				RefreshToken = "5464565465465466",
 			};
