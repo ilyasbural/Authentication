@@ -1,7 +1,6 @@
-﻿namespace Avipes.WebApi
+﻿namespace Authentication.Avipes
 {
-	public class AuthenticationResponse
+	public class AuthenticationResponse : ResponseBase<AuthenticationResponse>
 	{
-		public string JsonWebToken { get; set; } = String.Empty;
 	}
 }

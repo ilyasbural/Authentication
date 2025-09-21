@@ -1,26 +1,26 @@
 ﻿namespace Authentication.Beyond.Controllers
 {
+	using Microsoft.AspNetCore.Mvc;
+	using Microsoft.IdentityModel.Tokens;
 	using System.Text;
 	using System.Security.Claims;
-	using Microsoft.AspNetCore.Mvc;
 	using System.IdentityModel.Tokens.Jwt;
-	using Microsoft.IdentityModel.Tokens;
 
 	[ApiController]
-	public class LoginController : ControllerBase
+	public class CreateAuthenticationController : ControllerBase
 	{
 		readonly IConfiguration Configuration;
-		public LoginController(IConfiguration configuration) { Configuration = configuration; }
+		public CreateAuthenticationController(IConfiguration configuration) { Configuration = configuration; }
 
 		[HttpPost]
-		[Route("api/login")]
-		[Produces(typeof(LoginResponse))]
-		public LoginResponse Authentication([FromBody] BodyParameterAuthentication Model)
+		[Route("api/create")]
+		[Produces(typeof(CreateResponse))]
+		public CreateResponse CreateAuthentication([FromBody] BodyParameterCreate Model)
 		{
 			List<Claim> Claims = new List<Claim>()
 			{
-				new Claim("Id", "4563475674584678"),
-				new Claim("Email", "ilyasbural@gmail.com"),
+				//new Claim("Id", "4563475674584678"),
+				//new Claim("Email", "ilyasbural@gmail.com"),
 				//new Claim("", ""),
 				//new Claim("", ""),
 				//new Claim("", ""),
@@ -57,11 +57,10 @@
 				expires: DateTime.Now.AddMinutes(30),
 				signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ThisIsASecretKeydfgdfgdfgdgdfgfdgfdgdfgdfgdfgfdrleojeırjeırjfıeorjeıjerdfgdflıgdflıgdlfıgdl")), SecurityAlgorithms.HmacSha256)
 			);
-			string value = new JwtSecurityTokenHandler().WriteToken(token);
 
-			return new LoginResponse
+			return new CreateResponse
 			{
-				AccessToken = value,
+				AccessToken = new JwtSecurityTokenHandler().WriteToken(token),
 				AccessTokenExpireDate = token.ValidTo,
 				RefreshToken = "5464565465465466",
 			};

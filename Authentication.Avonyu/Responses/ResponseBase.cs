@@ -1,6 +1,6 @@
 ﻿namespace Authentication.Avonyu
 {
-	public class LoginResponse
+	public abstract class ResponseBase<T>
 	{
 		public String AccessToken { get; set; } = String.Empty;
 		public DateTime AccessTokenExpireDate { get; set; }
